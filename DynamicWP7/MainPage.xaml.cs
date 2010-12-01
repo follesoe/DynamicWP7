@@ -1,29 +1,67 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Windows.Media;
 
 using IronRuby;
+using IronRuby.Runtime;
 using Microsoft.Phone.Controls;
 using Microsoft.Scripting.Hosting;
+using Microsoft.Scripting.Hosting.Providers;
 
 namespace DynamicWP7
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        // Constructor
+        private readonly ScriptEngine _engine;
+        
         public MainPage()
         {
             InitializeComponent();
 
-            //ScriptEngine engine = Ruby.CreateEngine();
-            //engine.Runtime.LoadAssembly(typeof(Color).Assembly);
-            //engine.Runtime.Globals.SetVariable("Phone", this);
+            _engine = Ruby.CreateEngine(setup => setup.Options["CompilationThreshold"] = Int32.MaxValue);
+            _engine.Runtime.LoadAssembly(typeof(Color).Assembly);
+
+            var context = (RubyContext)HostingHelpers.GetLanguageContext(_engine);
+            context.ObjectClass.SetConstant("Phone", this);
 
             //Assembly execAssembly = Assembly.GetExecutingAssembly();
             //Stream codeFile = execAssembly.GetManifestResourceStream("DynamicWP7.MainPage.rb");
             //string code = new StreamReader(codeFile).ReadToEnd();
             
             //engine.Execute(code);
+        }
+
+        private void RunCode(object sender, EventArgs e)
+        {
+            _output.Text = string.Empty;
+
+            var stream = new MemoryStream();
+            _engine.Runtime.IO.SetOutput(stream, Encoding.UTF8);
+
+            try
+            {
+                try
+                {
+                    _engine.Execute(_code.Text.Replace("\r", Environment.NewLine));
+                }
+                finally
+                {
+                    byte[] bytes = stream.ToArray();
+                    _output.Text += Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                _output.Text += ex.Message;
+            }
+        }
+
+        private void ClearCode(object sender, EventArgs e)
+        {
+            _code.Text = string.Empty;
+            _output.Text = string.Empty;
         }
     }
 }
