@@ -67,6 +67,11 @@ namespace DynamicWP7
         private void LoadSnippet(object sender, EventArgs e)
         {
             _code.Text =
+                "include System::Windows::Media\r\r" +
+                "color = Colors.Red\r\r" +
+                "Phone.find_name(\"_output\").background = \r" +
+                "    SolidColorBrush.new(color)\r\r" +
+
                 "def fact n\r" +
                 " if n <= 1 then 1 else n * fact(n-1) end\r" +
                 "end\r\r" +
