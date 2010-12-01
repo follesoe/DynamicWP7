@@ -35,7 +35,10 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-        	<shell:ApplicationBarIconButton x:Name="_run" Click="RunCode" IconUri="/icons/appbar.sync.rest.png" Text="run"/>
+        	<shell:ApplicationBar.MenuItems>
+        		<shell:ApplicationBarMenuItem Text="load demo snippet" Click="LoadSnippet"/>
+        	</shell:ApplicationBar.MenuItems>
+        	<shell:ApplicationBarIconButton x:Name="_run" Click="RunCode" IconUri="/icons/appbar.transport.play.rest.png" Text="run"/>
         	<shell:ApplicationBarIconButton x:Name="_clear" Click="ClearCode" IconUri="/icons/appbar.delete.rest.png" Text="clear"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>

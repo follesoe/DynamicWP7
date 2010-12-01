@@ -63,5 +63,15 @@ namespace DynamicWP7
             _code.Text = string.Empty;
             _output.Text = string.Empty;
         }
+
+        private void LoadSnippet(object sender, EventArgs e)
+        {
+            _code.Text =
+                "def fact n\r" +
+                " if n <= 1 then 1 else n * fact(n-1) end\r" +
+                "end\r\r" +
+                "10.times { |i| puts \"#{i} -> #{fact(i)}\"}\r" +
+                "";
+        }
     }
 }
