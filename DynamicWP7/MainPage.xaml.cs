@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
+﻿using System.IO;
+using System.Reflection;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+
+using IronRuby;
 using Microsoft.Phone.Controls;
+using Microsoft.Scripting.Hosting;
 
 namespace DynamicWP7
 {
@@ -19,6 +14,16 @@ namespace DynamicWP7
         public MainPage()
         {
             InitializeComponent();
+
+            //ScriptEngine engine = Ruby.CreateEngine();
+            //engine.Runtime.LoadAssembly(typeof(Color).Assembly);
+            //engine.Runtime.Globals.SetVariable("Phone", this);
+
+            //Assembly execAssembly = Assembly.GetExecutingAssembly();
+            //Stream codeFile = execAssembly.GetManifestResourceStream("DynamicWP7.MainPage.rb");
+            //string code = new StreamReader(codeFile).ReadToEnd();
+            
+            //engine.Execute(code);
         }
     }
 }
