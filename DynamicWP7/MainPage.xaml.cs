@@ -71,6 +71,20 @@ namespace DynamicWP7
                 "";
         }
 
+        private void LoadClassSnippet(object sender, EventArgs e)
+        {
+            _code.Text = "class Greeter\r" +
+                         "  def initialize(name)\r" +
+                         "    @name = name.capitalize\r" +
+                         "  end\r\r" +
+                         "  def salute\r" +
+                         "    puts \"Hello #{@name}!\"\r" +
+                         "  end\r" +
+                         "end\r\r" +
+                         "g = Greeter.new(\"world\")\r" +
+                         "g.salute\r";
+        }
+
         private void GoToRubyPage(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/RubyPage.xaml", UriKind.Relative));
