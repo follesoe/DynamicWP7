@@ -5,7 +5,6 @@ using System.Windows.Media;
 
 using IronRuby;
 using IronRuby.Runtime;
-using Microsoft.Phone.Controls;
 using Microsoft.Scripting.Hosting;
 using Microsoft.Scripting.Hosting.Providers;
 
@@ -68,7 +67,7 @@ namespace DynamicWP7
                 "def fact n\r" +
                 " if n <= 1 then 1 else n * fact(n-1) end\r" +
                 "end\r\r" +
-                "10.times { |i| puts \"#{i} -> #{fact(i)}\"}\r" +
+                "10.times { |i| puts \"#{i} -> #{fact(i)}\" }\r" +
                 "";
         }
 
