@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Windows.Media;
 
@@ -12,7 +11,7 @@ using Microsoft.Scripting.Hosting.Providers;
 
 namespace DynamicWP7
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage
     {
         private readonly ScriptEngine _engine;
         
@@ -25,12 +24,6 @@ namespace DynamicWP7
 
             var context = (RubyContext)HostingHelpers.GetLanguageContext(_engine);
             context.ObjectClass.SetConstant("Phone", this);
-
-            //Assembly execAssembly = Assembly.GetExecutingAssembly();
-            //Stream codeFile = execAssembly.GetManifestResourceStream("DynamicWP7.MainPage.rb");
-            //string code = new StreamReader(codeFile).ReadToEnd();
-            
-            //engine.Execute(code);
         }
 
         private void RunCode(object sender, EventArgs e)
@@ -77,6 +70,11 @@ namespace DynamicWP7
                 "end\r\r" +
                 "10.times { |i| puts \"#{i} -> #{fact(i)}\"}\r" +
                 "";
+        }
+
+        private void GoToRubyPage(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/RubyPage.xaml", UriKind.Relative));
         }
     }
 }

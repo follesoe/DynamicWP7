@@ -37,6 +37,7 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
         	<shell:ApplicationBar.MenuItems>
         		<shell:ApplicationBarMenuItem Text="load demo snippet" Click="LoadSnippet"/>
+        		<shell:ApplicationBarMenuItem Text="go to ruby page" Click="GoToRubyPage"/>
         	</shell:ApplicationBar.MenuItems>
         	<shell:ApplicationBarIconButton x:Name="_run" Click="RunCode" IconUri="/icons/appbar.transport.play.rest.png" Text="run"/>
         	<shell:ApplicationBarIconButton x:Name="_clear" Click="ClearCode" IconUri="/icons/appbar.delete.rest.png" Text="clear"/>
